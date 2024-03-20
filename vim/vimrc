@@ -7,7 +7,6 @@ Plugin 'Yggdroot/LeaderF'
 Plugin 'w0rp/ale'
 Plugin 'majutsushi/tagbar'
 Plugin 'fatih/vim-go'
-Plugin 'morhetz/gruvbox'
 Plugin 'rakr/vim-one'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'tpope/vim-fugitive'
@@ -15,8 +14,10 @@ Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
 call vundle#end()
+
+
 syntax off
-colorscheme gruvbox
+colorscheme gotham256
 set background=dark
 
 let g:mapleader = ";" 
@@ -47,11 +48,7 @@ if !exists('g:airline_symbols')
      let g:airline_symbols = {}
 endif
 
-let g:tagbar_width=30
-let g:tagbar_left=1
-noremap <F5> :Vexplore<CR>
-noremap <F6> :TagbarToggle<CR>
-
+""" 配置airline bar
 let g:airline_theme="owo"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -87,7 +84,8 @@ let g:airline_powerline_fonts=1
 let Powerline_symbols='fancy'
 let g:bufferline_echo=0
 
-"""let g:ale_sign_error = '✗'
+""" 配置ale插件，语法检查
+let g:ale_sign_error = '✗'
 let g:ale_sign_error = '☠'
 let g:ale_sign_warning = '⚡'
 let g:ale_echo_msg_error_str = 'E'
@@ -105,22 +103,25 @@ let g:ale_c_gcc_options = '-Wall -O1 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O1 -std=c++11'
 let g:ale_lint_on_enter = 1
 set fenc= 
-noremap <F9> :ALEToggle<CR>
-let g:mapleader = ";"
+noremap <leader>q :ALEToggle<CR>
 noremap <leader>e :ALEDetail<CR>
+
+
  
+"""配置Leaderf插件 模糊检索插件
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_HideHelp = 1
-
 let g:Lf_Gtagslabel = 'pygments'
+let g:Lf_ShowDevIcons = 0
 noremap <F3> :Leaderf bufTag<CR>
 noremap <F4> :Leaderf file<CR>
 
-noremap <C-N> :bn <CR>
-noremap <C-P> :bp <CR>
-noremap <C-C> :bdelete <CR>
-noremap <F2> :cclose <CR>
+"""自定义Leaderf命令，实现函数定位
+command  -nargs=1 D : Leaderf gtags -d <args> 
+command  -nargs=1 R : Leaderf gtags -r <args>
+command  -nargs=1 F : Leaderf rg  <args>
 
+"""配置Golang代码格式化插件 
 let g:go_fmt_command = "goimports"
 let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
@@ -136,27 +137,34 @@ let g:go_highlight_generate_tags = 1
 let g:godef_split=3
 let g:godef_same_file_in_same_window=1
 
+
+"""配置代码格式化插件 
 let g:autoformat_verbosemode=0
 """autocmd BufWrite *.sql,*.c,*.cpp,*.cc,*.java,*.js,*.py :Autoformat
 let g:formatdef_clangformat_google = '"clang-format -style google -"'
 let g:formatters_c = ['clangformat_google']
-command  Autoformat :Autoformat
+noremap <F7> : Autoformat
 
-
-function ShowIndent() 
-    set list
-    set listchars=tab:>~,trail:.
-endfunction
-
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
-noremap ;  <C-W>
-
+"""配置Markdown渲染插件
 let g:mkdp_path_to_chrome = "google-chrome"
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0 
 let g:netrw_winsize = 25
 let g:netrw_browse_split = 4
 
-command  -nargs=1 D : Leaderf gtags -d <args> 
-command  -nargs=1 R : Leaderf gtags -r <args>
-command  -nargs=1 F : Leaderf rg  <args>
+"""配置TagBar插件
+let g:tagbar_width=30
+let g:tagbar_left=1
+noremap <F5> :TagbarToggle<CR>
+
+"""配置Vim文件浏览器
+noremap <F5> :Vexplore<CR>
+
+noremap <C-S> :w<CR>
+noremap <C-N> :bn <CR>
+noremap <C-P> :bp <CR>
+noremap <leader>w :cclose <CR>
+
+
+noremap <leader>c :bdelete <CR>
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
