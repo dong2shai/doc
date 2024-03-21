@@ -18,18 +18,18 @@
 ---
 - 下标方式  
 Numpy数组可以像普通的C语言数组一样通过下标方式访问指定位置的元素，如现在有二维数组X，访问元素方式如下:    
-<center>$a = X[i_1][i_2]$ </center>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a = X[i_1][i_2]$
 
 - 元组方式      
 Numpy数组也可以通过元组的方式进行访问，元组的每个元素代表数组的一个轴，对于二维数组X，访问方式如下:   
-<center>$a = X[(i_1,i_2)]$ </center>  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a = X[(i_1,i_2)]$  
 $i_1$代表第一轴下标为$i_1$，$i_2$代表第二个轴下标为$i_2$的值。同时，也可以使用元组的元组进行批量的元素操作，具体方式如下:  
-<center> $ a = X[(i_1,i_2,i_3),(i_1,i_2,i_3)]$ </cener>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a = X[(i_1,i_2,i_3),(i_1,i_2,i_3)]$
 
 
 - 整数数组  
 整数数组的访问方式和元组的方式基本一直，每个数组代表一个轴，数组中的元素代表该轴上的值，具体的访问方式如下:  
-<center> $a = X[[i_1,i_2,i_3],[i_1,i_2,i_3]]$ </center>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a = X[[i_1,i_2,i_3],[i_1,i_2,i_3]]$
 
 
 - 布尔数组  
