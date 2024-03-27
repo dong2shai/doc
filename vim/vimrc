@@ -4,6 +4,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Yggdroot/LeaderF'
+
 Plugin 'w0rp/ale'
 Plugin 'majutsushi/tagbar'
 Plugin 'fatih/vim-go'
@@ -13,6 +14,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
+Plugin 'skywind3000/asyncrun.vim'
 call vundle#end()
 
 
@@ -52,12 +54,12 @@ endif
 let g:airline_theme="owo"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#fnametruncate = 16
 let g:airline#extensions#tabline#fnamecollapse = 2
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#bookmark#enabled = 1
+let g:airline#extensions#bookmark#enabled = 0
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '⛟'
@@ -111,7 +113,7 @@ noremap <leader>e :ALEDetail<CR>
 """配置Leaderf插件 模糊检索插件
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_HideHelp = 1
-let g:Lf_Gtagslabel = 'pygments'
+let g:Lf_Gtagslabel = 'universal-ctags'
 let g:Lf_ShowDevIcons = 0
 noremap <F3> :Leaderf bufTag<CR>
 noremap <F4> :Leaderf file<CR>
@@ -143,28 +145,24 @@ let g:autoformat_verbosemode=0
 """autocmd BufWrite *.sql,*.c,*.cpp,*.cc,*.java,*.js,*.py :Autoformat
 let g:formatdef_clangformat_google = '"clang-format -style google -"'
 let g:formatters_c = ['clangformat_google']
-noremap <F7> : Autoformat
+noremap <F7> :Autoformat
 
 """配置Markdown渲染插件
 let g:mkdp_path_to_chrome = "google-chrome"
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0 
-let g:netrw_winsize = 25
-let g:netrw_browse_split = 4
 
 """配置TagBar插件
 let g:tagbar_width=30
 let g:tagbar_left=1
-noremap <F5> :TagbarToggle<CR>
+noremap <F2> :TagbarToggle<CR>
 
-"""配置Vim文件浏览器
-noremap <F5> :Vexplore<CR>
+
+
+noremap <leader>c :cclose <CR>
+noremap <leader>d :bdelete <CR>
+noremap <Leader>b :buffers<CR>:buffer<Space>
+noremap <Leader>r :resize<Space>
+nnoremap <leader>w :wincmd <Space>
+
+noremap <F5> :AsyncRun<Space>
 
 noremap <C-S> :w<CR>
-noremap <C-N> :bn <CR>
-noremap <C-P> :bp <CR>
-noremap <leader>w :cclose <CR>
-
-
-noremap <leader>c :bdelete <CR>
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
