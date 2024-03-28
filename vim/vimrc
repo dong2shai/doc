@@ -107,12 +107,8 @@ let g:ale_linters = {
    \}
 let g:ale_c_gcc_options = '-Wall -O1 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O1 -std=c++11'
-let g:ale_lint_on_enter = 1
-set fenc= 
-noremap <leader>q :ALEToggle<CR>
-noremap <leader>e :ALEDetail<CR>
-
-
+let g:ale_lint_on_enter = 0
+set fenc=  
  
 """配置Leaderf插件 模糊检索插件
 let g:Lf_GtagsAutoGenerate = 0
